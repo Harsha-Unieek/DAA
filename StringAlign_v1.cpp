@@ -42,8 +42,8 @@ void stringAlign(vector<vector<int>>& dp, string x, string y){
 }
 
 int main() {
-    string a = "name";
-    string b = "naem";
+    string a = "atgtg";
+    string b = "atcgt";
     vector<vector<int>> dp(a.size()+1, vector<int>(b.size()+1, 0));
     stringAlign(dp, a, b);
     cout << "HI after function call" << endl;
