@@ -1,27 +1,25 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Function to align two strings based on specified mismatch and gap costs
 void calculateAlignmentCost(vector<vector<int>>& dp, const string& str1, const string& str2) {
-    int gap_penalty = 2; // Cost for a gap
+    int gap_penalty = 2; 
 
-    // Determine if each character in the alphabet is a vowel (for mismatch calculation)
     vector<int> is_vowel(26, 0);
     string vowels = "aeiou";
     for (char ch : vowels) {
         is_vowel[ch - 'a'] = 1;
     }
 
-    // Initialize mismatch cost matrix for each pair of characters
+    
     vector<vector<int>> mismatch_cost(26, vector<int>(26, 0));
     for (int i = 0; i < 26; i++) {
         for (int j = 0; j < 26; j++) {
             if (i == j) 
-                mismatch_cost[i][j] = 0; // No cost for matching characters
+                mismatch_cost[i][j] = 0; 
             else if (is_vowel[i] == is_vowel[j]) 
-                mismatch_cost[i][j] = 1; // Lesser cost for same type mismatch (both vowels or both consonants)
+                mismatch_cost[i][j] = 1; 
             else 
-                mismatch_cost[i][j] = 3; // Higher cost for different type mismatch (vowel vs consonant)
+                mismatch_cost[i][j] = 3; 
         }
     }
     
@@ -48,10 +46,9 @@ int main() {
     string str1 = "atgtg";
     string str2 = "atcgt";
     vector<vector<int>> dp(str1.size() + 1, vector<int>(str2.size() + 1, 0));
-
+    
     calculateAlignmentCost(dp, str1, str2);
 
-    // Output the DP table for inspection
     cout << "Alignment cost table:" << endl;
     for (int i = 0; i <= str1.size(); i++) {
         for (int j = 0; j <= str2.size(); j++) {
